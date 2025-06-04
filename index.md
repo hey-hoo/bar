@@ -3,14 +3,15 @@
 layout: home
 ---
 
-## 営業時間
-- 木曜: 19:00 - 24:00
-- 金曜: 19:00 - 24:00
+## Open
+- 木/金: 19:00 - 24:00
 
 Charge ¥400
 
 ## Drink
-ビール（orion）¥600
+
+### Beer
+orion ¥600
 
 ### 日本酒
 相模灘(神奈川/相模原/久保田酒造) ¥500(grass) ¥800(tokkuri)
@@ -20,7 +21,6 @@ Charge ¥400
 百合仕込み（大分/日田/井上酒造）¥600(grass) ¥900(tokkuri)
 
 ### 焼酎
-（氷/水/湯/soda）
 いいちこ（麦/大分/宇佐/三和酒類）¥600
 
 白岳 白（米/熊本人吉/高橋酒造）¥700
@@ -34,7 +34,7 @@ GLOW（芋/鹿児島/志布志/若潮酒造）¥800
 ### Other
 マッコリ　¥500(grass)
 
-グラスワイン　¥600
+ワイン　¥600(grass)
 
 1800/テキーラ　¥600(shot)
 
@@ -43,14 +43,14 @@ Ichiros/ウィスキー　¥800（氷/水/soda）
 Whitley Neill Gin/ジン　¥800（氷/水/soda）
 
 ### Tea
-all ¥700
+Japanese Tea ¥700(pot)
+English Tea ¥700(pot)
 
-### FOOD
+## FOOD
 Nuts ¥600
 
-ベーコンエッグ ¥700
+Bacon Egg ¥700
 
-Fried Noodle（焼きそば）¥700
+Fried Noodle ¥700
 
-パスタ ¥700
-
+Pasta ¥700
