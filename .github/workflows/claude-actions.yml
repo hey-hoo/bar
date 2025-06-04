@@ -15,7 +15,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
       with:
-        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        token: ${{ github.token }}
         
     - name: Get request
       id: req
@@ -32,6 +32,13 @@ jobs:
         REQUEST_FILE="${{ steps.req.outputs.file }}"
         REQUEST_CONTENT=$(cat "$REQUEST_FILE")
         
+        # 既存のindex.mdの内容を読み取り
+        if [ -f "index.md" ]; then
+          EXISTING_CONTENT=$(cat index.md | sed '1,/^---$/d' | sed '1,/^---$/d')
+        else
+          EXISTING_CONTENT=""
+        fi
+        
         curl -s -X POST https://api.anthropic.com/v1/messages \
           -H "Content-Type: application/json" \
           -H "x-api-key: ${{ secrets.ANTHROPIC_API_KEY }}" \
@@ -41,7 +48,7 @@ jobs:
             \"max_tokens\": 2000,
             \"messages\": [{
               \"role\": \"user\", 
-              \"content\": \"あなたはバーのWebサイトコンテンツライターです。以下のリクエストに基づいて、魅力的なバーのWebサイト用コンテンツを作成してください。\\n\\nマークダウン形式で出力し、見出しや箇条書きなどを適切に使用してください。バーの雰囲気や料理・ドリンクの魅力が伝わる内容にしてください。\\n\\n出力は完成したWebページのコンテンツのみを返してください。説明や追加の質問は不要です。\\n\\n---\\n\\n$REQUEST_CONTENT\"
+              \"content\": \"あなたはバーのWebサイト管理者です。既存のメニューサイトを更新してください。\\n\\n【重要な更新ルール】\\n1. 既存の内容は必ず保持する\\n2. 新規情報の追加時は冒頭に追加\\n3. メニュー追加時は該当カテゴリに追加\\n4. 値段変更時は該当商品の価格のみ変更\\n5. 売り切れ商品は取り消し線（~~商品名~~）にする\\n6. 全体を書き換えず、指示された変更のみ実行\\n\\n【現在のWebサイト内容】\\n$EXISTING_CONTENT\\n\\n【更新指示】\\n$REQUEST_CONTENT\\n\\n上記のルールに従って、マークダウン形式で更新後の完全なコンテンツを出力してください。既存の構造とフォーマットを保持してください。\"
             }]
           }" | jq -r '.content[0].text // "エラー: コンテンツを生成できませんでした"' > content.txt
         
