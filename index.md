@@ -1,3 +1,7 @@
+---
+layout: home
+---
+
 
 ---
 layout: home
@@ -46,7 +50,7 @@ Whitley Neill Gin/ジン　¥800（氷/水/soda）
 Japanese Tea ¥700(pot)
 English Tea ¥700(pot)
 
-## FOOD
+### FOOD
 Nuts ¥600
 
 Bacon Egg ¥700
