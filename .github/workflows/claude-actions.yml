@@ -64,15 +64,16 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "Bar Claude Actions"
-        git fetch origin
-        git rebase origin/main || git reset --hard origin/main
-        echo "---" > index.md
-        echo "layout: home" >> index.md
-        echo "---" >> index.md
-        echo "" >> index.md
-        cat content.txt >> index.md
+        
+        # 変更があるかチェック
+        if git diff --quiet && git diff --cached --quiet; then
+          echo "No changes to commit"
+          exit 0
+        fi
+        
+        # シンプルなコミット・プッシュ（rebase回避）
         git add .
-        git commit -m "Update bar content via Claude" || echo "No changes"
+        git commit -m "Update bar content via Claude"
         git push origin main
         
     - name: Comment
